@@ -1,21 +1,25 @@
-include ramen/opt/v2d
-$10000 include ramen/opt/draw
 include nacho/system
+include nacho/chr
 
 [section] Main
-create player object
+
+*chr named player
 : start
 \    initgfx
     initsys
     show>
         tan backdrop
-        hold>
-            player as x 2@ at  art drawbitmap
+        render
     step>
-        player as vx x v+
+        physics
+        \ other physics
+        poll
+        logic
 ;
 
 \ --------------------------------------------------------------------------------------------------
 [section] Init
 [defined] source-id [if]  source-id close-file  drop [then]
-start ok
+
+
+start \ ok

@@ -1,4 +1,8 @@
 \ Remember we're using fixed-point now!!!
+$000000 include ramen/opt/v2d
+$000000 include ramen/opt/draw
+include nacho/kb
+
 
 \ assets
 \  image -
@@ -9,6 +13,19 @@
 \ other features
 \  scripting
 \
+
+
+1
+bit SOUTH
+bit NORTH
+bit EAST
+bit WEST
+drop
+
+
+\ --------------------------------------------------------------------------------------------------
+objlist stage
+stage 100 pool chrs
 
 
 \ --------------------------------------------------------------------------------------------------
@@ -26,3 +43,8 @@ var reaction  ( other -- )
 : initsys
     go>
 ;
+
+\ loop
+: render   chrs each> draw ;
+: logic    chrs each> behave ;
+: physics  chrs each> enabled? -exit vx x v+ ;
