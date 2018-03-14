@@ -9,3 +9,26 @@ variable mtime  \ last modified time
         mtime !  r> drop
     exit then  drop ;
 : updgfx   ?modified  art al_destroy_bitmap  art$ loadbitmap to art ;
+
+[section] Updater
+0 value updater   \ allegro timer
+
+: +updater
+    0.5e 1df al_create_timer to updater
+    eventq updater al_get_timer_event_source al_register_event_source
+    updater al_start_timer
+;
+
+: -updater
+    eventq updater al_get_timer_event_source al_unregister_event_source
+    updater al_destroy_timer
+    0 to updater
+;
+
+: updater-events
+    etype ALLEGRO_EVENT_DISPLAY_SWITCH_OUT = if  +updater  then
+    etype ALLEGRO_EVENT_DISPLAY_SWITCH_IN = if  -updater then
+    etype ALLEGRO_EVENT_TIMER = if
+        evt ALLEGRO_EVENT.source @ updater = if  updgfx  then
+    then
+;
