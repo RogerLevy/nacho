@@ -3,7 +3,8 @@ include nacho/chr
 
 [section] Main
 
-*chr named player
+*simplerwalker named player
+
 : start
 \    initgfx
     initsys

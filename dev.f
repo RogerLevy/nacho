@@ -1,4 +1,4 @@
-$000000 include ramen/ramen.f
+$000100 include ramen/ramen.f
 
 : ending ( addr len char -- addr len )
    >r begin  2dup r@ scan
@@ -8,7 +8,7 @@ $000000 include ramen/ramen.f
 : strconst  create string, does> count ;
 
 including -name strconst prjpath
-: rld  prjpath " /game.f" strjoin included ;
+: rld  prjpath " /main.f" strjoin included ;
 
 [defined] source-id [if]  source-id close-file  drop [then]
 rld
