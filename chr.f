@@ -4,8 +4,8 @@ redef off
 
 : halt  vx 0v ;
 
-: xaxis   0  <left> kstate if  drop -1 .0 then  <right> kstate if  drop 1 .0  then ;
-: yaxis   0  <up> kstate if  drop -1 .0  then  <down> kstate if  drop 1 .0  then ;
+: xaxis   0  <left> kstate if  drop -1 then  <right> kstate if  drop 1  then ;
+: yaxis   0  <up> kstate if  drop -1  then  <down> kstate if  drop 1  then ;
 : axes   xaxis yaxis ;
 
 create walkdata
@@ -43,12 +43,12 @@ defer walk
 :noname [ is walk ]  !dir  1 anm !  act>  ?walk  ?idle ;
 :noname [ is idle ]  anm off  halt  act>  ?walk ;
 
-: ?1   ( -- 0/1 )  anmctr @  16 .0 /  1 .0 and ;
-: anim>     ( data -- frame flip )  dir @ 2 .0 * cells + 2@  ?1 u+  anm @ anmctr +! ;
+: ?1   ( -- 0/1 )  anmctr @  16 /  1 and ;
+: anim>     ( data -- frame flip )  dir @ 2 * cells + 2@  ?1 u+  anm @ anmctr +! ;
 \ : walk-spr  SPRSET_GUY walkdata anim> ;
 
 
-: *chr  chrs one  idle  draw>  32 .0 32 .0 rectf ;
+: *chr  chrs one  idle  draw>  32 32 rectf ;
 
 \ guy start:
 \   !dir  idle  show>  x 2v@ at  walk-spr DrawSpriteFlip ;

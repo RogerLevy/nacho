@@ -1,6 +1,6 @@
 \ Remember we're using fixed-point now!!!
-$000000 include ramen/opt/v2d
-$000000 include ramen/opt/draw
+$000100 include ramen/opt/v2d
+$000100 include ramen/opt/draw
 include nacho/kb
 
 
