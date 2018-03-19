@@ -36,19 +36,26 @@ create walkdata
   dir ! ;
 
 
-defer idle
-defer walk
+action idle ( -- )
+action walk ( -- )
+
+: *chr  chrs one  draw>  32 32 rectf ;
+
+
+\ --------------------------------------------------------------------------------------------------
+[section] simplewalker
+roledef simplewalker
 : ?walk  axes 2dup vx 2!  or if  walk  then ;
 : ?idle  axes or 0= if  idle  then ;
-:noname [ is walk ]  !dir  1 anm !  act>  ?walk  ?idle ;
-:noname [ is idle ]  anm off  halt  act>  ?walk ;
+simplewalker :to walk ( -- )  !dir  1 anm !  act>  ?walk  ?idle ;
+simplewalker :to idle ( -- )  anm off  halt  act>  ?walk ;
+
 
 : ?1   ( -- 0/1 )  anmctr @  16 /  1 and ;
 : anim>     ( data -- frame flip )  dir @ 2 * cells + 2@  ?1 u+  anm @ anmctr +! ;
 \ : walk-spr  SPRSET_GUY walkdata anim> ;
 
-
-: *chr  chrs one  idle  draw>  32 32 rectf ;
+: *simplewalker  *chr  simplerwalker become ;
 
 \ guy start:
 \   !dir  idle  show>  x 2v@ at  walk-spr DrawSpriteFlip ;

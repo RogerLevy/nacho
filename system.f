@@ -1,25 +1,14 @@
-\ Remember we're using fixed-point now!!!
-$000100 include ramen/opt/v2d
-$000100 include ramen/opt/draw
-include nacho/kb
-
-
 \ assets
 \  image -
 \  sample - TBD when we add audio
 \  map - statically compiled, reference object scripts which reference other assets so
 \       they still need to be initialized at program start
 
-\ other features
-\  scripting
-\
-
-
 1
-bit SOUTH
-bit NORTH
-bit EAST
-bit WEST
+    bit SOUTH
+    bit NORTH
+    bit EAST
+    bit WEST
 drop
 
 

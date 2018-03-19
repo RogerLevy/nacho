@@ -1,3 +1,6 @@
+$000100 include ramen/opt/v2d
+$000100 include ramen/opt/draw
+$000100 include nacho/afk/kb
 include nacho/system
 include nacho/chr
 
