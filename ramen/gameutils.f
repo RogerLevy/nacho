@@ -1,3 +1,5 @@
+$000100 [version] gameutils-ver
+
 : lowerupper  ( n n -- lower higher )  2dup > if  swap  then ;
 : between  ( n n -- n )  lowerupper  over -  #1 +  rnd + ;
 : 1clamp  ( n -- n )  0.0 1.0 clamp ;
