@@ -1,27 +1,26 @@
 create walkdata
-    1 , 0 ,   0 , 0 ,   \ e
-    1 , 0 ,   0 , 0 ,   \ se
-    4 , 0 ,   3 , 0 ,   \ s
-    1 , #1 ,  0 , #1 ,  \ sw
-    1 , #1 ,  0 , #1 ,  \ w
-    1 , #1 ,  0 , #1 ,  \ nw
-    2 , #1 ,  2 , 0 ,   \ n
-    1 , 0 ,   0 , 0 ,   \ ne
+    1   frame,  0   frame,   \ e
+    1   frame,  0   frame,   \ se
+    4   frame,  3   frame,   \ s
+    1 [h] frame,  0  [h] frame,  \ sw
+    1 [h] frame,  0  [h] frame,  \ w
+    1 [h] frame,  0  [h] frame,  \ nw
+    2 [h] frame,  2    frame,   \ n
+    1   frame,  0    frame,   \ ne
 
 create idledata
-    0 , 0 ,   0 , 0 ,
-    5 , 0 ,   5 , 0 ,
-    5 , 0 ,   5 , 0 ,
-    5 , 0 ,   5 , 0 ,
-    0 , #1 ,  0 , #1 ,
-    0 , #1 ,  0 , #1 ,
-    6 , 0 ,   6 , 0 ,
-    0 , 0 ,   0 , 0 ,
+    0  frame,   0  frame,
+    5  frame,   5  frame,
+    5  frame,   5  frame,
+    5  frame,   5  frame,
+    0  [h] frame,   0  [h] frame,
+    0  [h] frame,   0  [h] frame,
+    6  frame,   6  frame,
+    0  frame,   0  frame,
 
-create anms  idledata , walkdata ,
-: anm>  anm @ cells anms + @ ;
+create animtable  idledata , walkdata ,
 
 " nacho/data/mouthyboy.png" asset image-mouthyboy
 64 64 image-mouthyboy subdivideimage
-: *mouthyboy  *simplewalker  /sprite
-    draw>  image-mouthyboy  anm> >frame objsubimage ;
+
+: *mouthyboy  image-mouthyboy animtable *simplewalker ;

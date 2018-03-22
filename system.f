@@ -7,14 +7,11 @@
 redef on
     var ctr
     var dir
-    var anm       \ ID
-    var anmctr
 redef off
 
 action idle ( -- )
 action walk ( -- )
-action >frame ( animdata -- frame# flip )
-: animate  anmctr off  anm ! ;
+action animate ( val speed -- )
 
 : dirtable  create does> swap cells + @ ;
 

@@ -1,3 +1,5 @@
+\ --------------------------------------------------------------------------------------------------
+\ basics
 
 : !dir
     axes 2dup or if
@@ -12,14 +14,17 @@
 [section] simplewalker
 roledef simplewalker
 
+var anmtbl
+var anm  \ will be used differently from ANIMSPR
+
+simplewalker :to animate ( index speed -- )  anmspd !  cells anmtbl @ + @ anm !  0 ctr ! ;
+
 : ?walk  axes or if  walk  then ;
 : ?idle  axes or 0= if  idle  then ;
-simplewalker :to walk ( -- )  !dir  1 animate  act>  !dir  !vel  ?idle ;
-simplewalker :to idle ( -- )  halt  0 animate  act>  ?walk ;
 
-simplewalker :to >frame  ( animdata -- frame# flip )
-    dir @ 4 cells * +
-    anmctr @  12 /  1 and if  2 cells +  then  2@
-    anmctr ++ ;
+simplewalker :to walk ( -- )  !dir  1  1 12 /  animate  act>  !dir  !vel  ?idle ;
+simplewalker :to idle ( -- )  halt  0  1 12 /  animate  act>  ?walk ;
 
-: *simplewalker  *chr  simplewalker become  idle ;
+: *simplewalker  ( image animtable )
+    *chr  /sprite  img !  anmtbl !  simplewalker become  idle
+    draw>  anm @ dir @ 2 frames * +  2  animarray ;
