@@ -1,4 +1,9 @@
-create walkdata
+[role] mouthyboy  simplewalker derive
+
+" nacho/data/mouthyboy.png" asset images/mouthyboy
+64 64 images/mouthyboy subdivideimage
+
+here mouthyboy walkdata !
     1   frame,  0   frame,   \ e
     1   frame,  0   frame,   \ se
     4   frame,  3   frame,   \ s
@@ -8,7 +13,7 @@ create walkdata
     2 [h] frame,  2    frame,   \ n
     1   frame,  0    frame,   \ ne
 
-create idledata
+here mouthyboy idledata !
     0  frame,   0  frame,
     5  frame,   5  frame,
     5  frame,   5  frame,
@@ -18,9 +23,5 @@ create idledata
     6  frame,   6  frame,
     0  frame,   0  frame,
 
-create animtable  idledata , walkdata ,
 
-" nacho/data/mouthyboy.png" asset image-mouthyboy
-64 64 image-mouthyboy subdivideimage
-
-: *mouthyboy  image-mouthyboy animtable *simplewalker ;
+: *mouthyboy  images/mouthyboy *simplewalker  mouthyboy role !  ;

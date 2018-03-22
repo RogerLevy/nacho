@@ -13,17 +13,22 @@
 \ --------------------------------------------------------------------------------------------------
 [role] simplewalker
 
-var anmtbl
 var anm  \ will be used differently from ANIMSPR
 
-simplewalker :to animate ( index speed -- )  anmspd !  cells anmtbl @ + @ anm !  0 ctr ! ;
+rolevar idledata
+rolevar walkdata
+
+simplewalker :to animate ( animdata speed -- )  anmspd !  anm !  0 ctr ! ;
 
 : ?walk  axes or if  walk  then ;
 : ?idle  axes or 0= if  idle  then ;
 
-simplewalker :to walk ( -- )  !dir  1  1 12 /  animate  act>  !dir  !vel  ?idle ;
-simplewalker :to idle ( -- )  halt  0  1 12 /  animate  act>  ?walk ;
+simplewalker :to walk ( -- )  !dir  my walkdata @  1 12 /  animate  act>  !dir  !vel  ?idle ;
+simplewalker :to idle ( -- )  halt  my idledata @  1 12 /  animate  act>  ?walk ;
 
-: *simplewalker  ( image animtable )
-    *chr  /sprite  anmtbl !  img !  simplewalker become  idle
+\ This isn't scalable ... if we "subclass" further things will happen out of order
+: [finally]  postpone r>  ' >code ?lit " >r >r" evaluate ; immediate
+
+: *simplewalker  ( image )
+    *chr  /sprite  img !  simplewalker role !  [finally] idle
     draw>  anm @ dir @ 2 frames * +  2  animarray ;
