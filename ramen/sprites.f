@@ -46,7 +46,8 @@ redef off
 : anim:  ( image regiontable|0 speed -- loopaddr )  ( -- )  \ when defined word is called, animation plays
     create 3,  0 0 at  here
     does>  @+ img !  @+ rgntbl !  @+ anmspd !  anm !  0 ctr ! ;
-: frame,  ( index+flip -- )  , at@ 2, ;  \ pen is used to define offset info.
+: frame,  ( index+flip -- )  , 0 , 0 , ;
+: <ofs    ( x y )  here 2 cells - 2! ;
 : frames,  0 do dup frame, loop drop ;
 : [h]  #1 or ;
 : [v]  #2 or ;

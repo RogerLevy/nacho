@@ -11,8 +11,7 @@
 : *chr  chrs one  draw>  32 32 rectf ;
 
 \ --------------------------------------------------------------------------------------------------
-[section] simplewalker
-roledef simplewalker
+[role] simplewalker
 
 var anmtbl
 var anm  \ will be used differently from ANIMSPR
@@ -26,5 +25,5 @@ simplewalker :to walk ( -- )  !dir  1  1 12 /  animate  act>  !dir  !vel  ?idle 
 simplewalker :to idle ( -- )  halt  0  1 12 /  animate  act>  ?walk ;
 
 : *simplewalker  ( image animtable )
-    *chr  /sprite  img !  anmtbl !  simplewalker become  idle
+    *chr  /sprite  anmtbl !  img !  simplewalker become  idle
     draw>  anm @ dir @ 2 frames * +  2  animarray ;
