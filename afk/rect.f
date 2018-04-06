@@ -1,10 +1,10 @@
 $000100 [version] rect-ver
 
 struct rect
-    rect 0 svar rect.x
-    rect 0 svar rect.y
-    rect 0 svar rect.w
-    rect 0 svar rect.h
+    rect int svar rect.x
+    rect int svar rect.y
+    rect int svar rect.w
+    rect int svar rect.h
 
 : x@    @ ;                       : x!    ! ;
 : y@    cell+ @ ;                 : y!    cell+ ! ;

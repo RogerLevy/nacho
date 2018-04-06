@@ -11,7 +11,6 @@ redef off
 
 action idle ( -- )
 action walk ( -- )
-action animate ( val speed -- )
 
 
 : halt  vx 0v ;
@@ -22,9 +21,9 @@ action animate ( val speed -- )
 
 \ --------------------------------------------------------------------------------------------------
 objlist stage
-stage 50 pool chrs
+stage 50 pool: chrs
 
-: clear  each> en? -exit  remove ;
+: clear  each>  remove ;
 : scene  stage clear ;
 
 
@@ -41,7 +40,7 @@ var reaction  ( other -- )
 \ loop
 : render   chrs each> draw ;
 : logic    chrs each> behave ;
-: physics  chrs each> en? -exit vx x v+ ;
+: physics  chrs each> vx x v+ ;
 
 \ --------------------------------------------------------------------------------------------------
 [section] initsys

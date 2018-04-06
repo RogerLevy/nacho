@@ -3,25 +3,25 @@
 " nacho/data/mouthyboy.png" asset images/mouthyboy
 64 64 images/mouthyboy subdivideimage
 
-here mouthyboy walkdata !
-    1   frame,  0   frame,   \ e
-    1   frame,  0   frame,   \ se
-    4   frame,  3   frame,   \ s
-    1 [h] frame,  0  [h] frame,  \ sw
-    1 [h] frame,  0  [h] frame,  \ w
-    1 [h] frame,  0  [h] frame,  \ nw
-    2 [h] frame,  2    frame,   \ n
-    1   frame,  0    frame,   \ ne
+mouthyboy walkdata 8 animtable[
+    ( e  ) subanim[  1   frame,  0   frame,       ]subanim
+    ( se ) subanim[  1   frame,  0   frame,       ]subanim
+    ( s  ) subanim[  4   frame,  3   frame,       ]subanim
+    ( sw ) subanim[  1 [h] frame,  0  [h] frame,  ]subanim
+    ( w  ) subanim[  1 [h] frame,  0  [h] frame,  ]subanim
+    ( nw ) subanim[  1 [h] frame,  0  [h] frame,  ]subanim
+    ( n  ) subanim[  2 [h] frame,  2    frame,    ]subanim
+    ( ne ) subanim[  1   frame,  0    frame,      ]subanim
+]animtable
 
-here mouthyboy idledata !
-    0  frame,   0  frame,
-    5  frame,   5  frame,
-    5  frame,   5  frame,
-    5  frame,   5  frame,
-    0  [h] frame,   0  [h] frame,
-    0  [h] frame,   0  [h] frame,
-    6  frame,   6  frame,
-    0  frame,   0  frame,
+mouthyboy idledata 8 animtable[
+    ( e  ) subanim[  0   frame,    ]subanim
+    ( se ) subanim[  5   frame,    ]subanim
+    ( s  ) subanim[  5   frame,    ]subanim
+    ( sw ) subanim[  5     frame,  ]subanim
+    ( w  ) subanim[  0 [h] frame,  ]subanim
+    ( nw ) subanim[  0 [h] frame,  ]subanim
+    ( n  ) subanim[  6     frame,  ]subanim
+    ( ne ) subanim[  0   frame,    ]subanim
 
-
-: *mouthyboy  images/mouthyboy *simplewalker  mouthyboy role !  ;
+: *mouthyboy  chrs one  mouthyboy images/mouthyboy /simplewalker ;
