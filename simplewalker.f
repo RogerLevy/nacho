@@ -19,11 +19,11 @@ rolevar walkdata
     dir @  !dir  dir @  <> if  walk  r> drop  !vel  then ;
 
 simplewalker :to walk ( -- )
-    !dir  img @  0  my walkdata @ dir @ th @  1 9 /  animate
+    !dir  img @  my walkdata @ dir @ th @  animate  1 9 / anmspd !
     act>  ?changedir  !vel  ?idle ;
 
 simplewalker :to idle ( -- )
-    halt  img @  0  my idledata @ dir @ th @  1 9 /  animate
+    halt  img @  my idledata @ dir @ th @  animate  1 9 / anmspd !
     act>  ?walk ;
 
 : /simplewalker  ( role image )  img !  role !  /scalerot  idle  draw>  animspr ;
