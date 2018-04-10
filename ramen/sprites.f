@@ -28,13 +28,13 @@ redef off
 
 
 : objregion ( image rect flip )  \ pass a rectangle defining the region to draw
-    locals| flip rect img |  img image.bmp @ ?exit
+    locals| flip rect img |  img >bmp ?exit
     img image.bmp @  rect 4@ 4af  tint 4@ 4af  cx 2@ at@  4af  sx 3@ 3af  flip
         al_draw_tinted_scaled_rotated_bitmap_region ;
 
 
 : fobjregion ( image frect flip )  \ like OBJREGION but the rectangle is in floats
-    locals| flip rect img |  img image.bmp @ ?exit
+    locals| flip rect img |  img >bmp ?exit
     img image.bmp @  rect 4@  tint 4@ 4af  cx 2@ at@  4af  sx 3@ 3af  flip
         al_draw_tinted_scaled_rotated_bitmap_region ;
 
