@@ -2,8 +2,8 @@ $000100 include ramen/lib/v2d.f
 $000100 include ramen/lib/draw.f
 $000100 include ramen/lib/rangetools.f
 $000100 include kit/lib/kb.f
-$000100 include nacho/ramen/sprites.f
-$000100 include nacho/ramen/scripting.f
+$000100 include nacho/_ramen/sprites.f
+$000100 include nacho/_ramen/scripting.f
 include nacho/system.f
 include nacho/simplewalker.f
 include nacho/mouthyboy.f
