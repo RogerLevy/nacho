@@ -6,12 +6,12 @@ $000100 include nacho/_ramen/sprites.f
 $000100 include nacho/_ramen/scripting.f
 include nacho/system.f
 include nacho/simplewalker.f
-include nacho/mouthyboy.f
+include nacho/bean.f
 
 \ --------------------------------------------------------------------------------------------------
 [section] Main
 
-*mouthyboy named player
+*bean named player
 
 : newgame
     player as

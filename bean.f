@@ -1,9 +1,9 @@
-[role] mouthyboy  simplewalker derive
+[role] bean  simplewalker derive
 
-" nacho/data/mouthyboy.png" image: images/mouthyboy
-64 64 images/mouthyboy subdivide
+" nacho/data/bean.png" image: images/bean
+64 64 images/bean subdivideimage
 
-mouthyboy walkdata 8 animtable[
+bean walkdata 8 animtable[
     ( e  ) subanim[  1   frame,  0   frame,       ]subanim
     ( se ) subanim[  1   frame,  0   frame,       ]subanim
     ( s  ) subanim[  4   frame,  3   frame,       ]subanim
@@ -14,7 +14,7 @@ mouthyboy walkdata 8 animtable[
     ( ne ) subanim[  1   frame,  0    frame,      ]subanim
 ]animtable
 
-mouthyboy idledata 8 animtable[
+bean idledata 8 animtable[
     ( e  ) subanim[  0   frame,    ]subanim
     ( se ) subanim[  5   frame,    ]subanim
     ( s  ) subanim[  5   frame,    ]subanim
@@ -24,4 +24,4 @@ mouthyboy idledata 8 animtable[
     ( n  ) subanim[  6     frame,  ]subanim
     ( ne ) subanim[  0   frame,    ]subanim
 
-: *mouthyboy  chrs one  mouthyboy images/mouthyboy /simplewalker ;
+: *bean  chrs one  bean images/bean /simplewalker ;
