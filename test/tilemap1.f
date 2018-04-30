@@ -1,6 +1,9 @@
 \ NOTES
-\  I had to unrotate and flip some cactuses
-\  I changed folder structure, for now.
+\  I had to unrotate and flip some cactuses.
+\  Justin: don't use rotate or scale or flip.
+\  I changed folder structure, for now.  (you don't need to anymore though)
+\  Justin: use all lower case from now on.
+
 
 empty
 $000100 include ramen/brick
@@ -15,8 +18,8 @@ only forth definitions also xmling also tmxing
 : deiso  at@  >car  at  ;
 : ofs  wh@ 2 1 2/ 2negate +at  ;
 :noname [ is tmxobj ] ( object-nnn XT -- )
-    over ?type if cr type then  deiso  dup ofs execute ;
-:noname [ is tmxrect ] ( object-nnn w h -- )  .s 3drop ;
+    over ?type if cr type then  deiso  dup ofs  execute ;
+:noname [ is tmxrect ] ( object-nnn w h -- )  cr 3. ;
 :noname [ is tmximage ] ( object-nnn gid -- )
     deiso  swap ofs  game one  gid !
     draw>  @gidbmp blit ;
