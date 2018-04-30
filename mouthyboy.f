@@ -1,7 +1,7 @@
 [role] mouthyboy  simplewalker derive
 
 " nacho/data/mouthyboy.png" image: images/mouthyboy
-64 64 images/mouthyboy subdivideimage
+64 64 images/mouthyboy subdivide
 
 mouthyboy walkdata 8 animtable[
     ( e  ) subanim[  1   frame,  0   frame,       ]subanim
