@@ -50,7 +50,7 @@ map " Tile Layer 1" layer  0 0 loadtilemap
     r> drop ;
 
 : *fieldbg    game one  /isotilemap ;
-: *scroller   game one  me to cam  act>  vx udlrvec ;
+: *scroller   game one  me to cam  act>  player ?exit  vx udlrvec ;
 
 *fieldbg  map 0 @tilesetwh drop -2 / x +!
 *scroller
