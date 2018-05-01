@@ -21,6 +21,7 @@ redef off
 
 \ --------------------------------------------------------------------------------------------------
 \ Drawing!
+
 : objsubimage  ( image n flip -- )  \ uses image subdivision feature
     >r swap afsubimg
         tint 4@ 4af  cx 2@ at@  4af  sx 3@ 3af  r>
@@ -32,17 +33,10 @@ redef off
     img image.bmp @  rect 4@ 4af  tint 4@ 4af  cx 2@ at@  4af  sx 3@ 3af  flip
         al_draw_tinted_scaled_rotated_bitmap_region ;
 
-
-: fobjregion ( image frect flip )  \ like OBJREGION but the rectangle is in floats
-    locals| flip rect img |  img >bmp ?exit
-    img image.bmp @  rect 4@  tint 4@ 4af  cx 2@ at@  4af  sx 3@ 3af  flip
-        al_draw_tinted_scaled_rotated_bitmap_region ;
-
-
 \ --------------------------------------------------------------------------------------------------
-\ Define region tables.  We pre-convert the rect part to floats for speed
+\ Define region tables.
 
-: region,  ( x y w h )  4af 4,  0 , 0 , ;
+: region,  ( x y w h )  4,  0 , 0 , ;
 : <origin  ( x y )  2negate  here 2 cells - 2! ;
 6 cells constant /region
 
@@ -68,9 +62,17 @@ redef off
 : subanim[  here over push  anim[ ;
 : ]subanim  ;anim ;
 
+: frame@  ( -- srcx srcy w h )
+    img @ anm @ or 0= if  0 0 16 16  exit then
+    rgntbl @ ?dup if
+        anm @ @  /region * +  4@
+    else
+        anm @ @  img @  >subxywh
+    then ;
+
 
 \ --------------------------------------------------------------------------------------------------
-\ Drawing/pulsing animation
+\ Drawing and pulsing animation
 
 action animlooped ( -- )
 
@@ -79,7 +81,7 @@ action animlooped ( -- )
     anm @ cell+ 2@ +at  \ apply the offset
     img @
         rgntbl @ ?dup if
-            anm @ @ dup >r  /region * +  r>  #3 and  fobjregion
+            anm @ @ dup >r  /region * +  r>  #3 and  objregion
         else
             anm @ @ dup #3 and   objsubimage
         then
