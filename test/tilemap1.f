@@ -7,15 +7,16 @@
 empty
 $000100 include nacho/test/rpg/rpg
 
-2 to global-scale  \ TODO: reconcile this GLOBAL-SCALE being treated as a fixedp by stage.f with the one used in UNMOUNT
+#2 to #globalscale
 
 only forth definitions also xmling also tmxing
 : deiso  at@  >car  at  ;
 : ofs  wh@ 2 1 2/ 2negate +at  ;
-:noname [ is tmxobj ] ( object-nnn XT -- )
+
+:is tmxobj ( object-nnn XT -- )
     over ?type if cr type then  deiso  dup ofs  execute ;
-:noname [ is tmxrect ] ( object-nnn w h -- )  cr 3. ;
-:noname [ is tmximage ] ( object-nnn gid -- )
+:is tmxrect ( object-nnn w h -- )  cr 3. ;
+:is tmximage ( object-nnn gid -- )
     deiso  swap ofs   bg one  gid !
     draw>  @gidbmp blit ;
 
@@ -58,6 +59,10 @@ map " Plants and Buildings" objgroup loadobjects
 map " Shop Cactus" objgroup loadobjects
 
 include nacho/test/data/objects/bean
-0 0 at *bean  \ me to subject
+0 0 at *bean  ' p1 is subject
 
-go ok
+\ Overriding stuff...
+: physics  stage each>  vx x v+  y @ zdepth ! ;
+: (step)  step>  think  stage multi  physics ;
+
+go (step) ok
