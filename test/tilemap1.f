@@ -4,15 +4,10 @@
 \  I changed folder structure, for now.  (you don't need to anymore though)
 \  Justin: use all lower case from now on.
 
-
 empty
-$000100 include ramen/brick
-$10000 include ramen/tiled/tiled
-$000100 include ramen/lib/stage
+$000100 include nacho/test/rpg/rpg
 
 2 to global-scale  \ TODO: reconcile this GLOBAL-SCALE being treated as a fixedp by stage.f with the one used in UNMOUNT
-stage 1000 pool: game
-
 
 only forth definitions also xmling also tmxing
 : deiso  at@  >car  at  ;
@@ -21,14 +16,13 @@ only forth definitions also xmling also tmxing
     over ?type if cr type then  deiso  dup ofs  execute ;
 :noname [ is tmxrect ] ( object-nnn w h -- )  cr 3. ;
 :noname [ is tmximage ] ( object-nnn gid -- )
-    deiso  swap ofs  game one  gid !
+    deiso  swap ofs   bg one  gid !
     draw>  @gidbmp blit ;
-
 
 \ ------------------------------------------------------------------------------------------------
 \ Load map
 
-" nacho/test/tilemap1/farm1.tmx" loadtmx  constant map  constant dom
+" nacho/test/data/farm1.tmx" loadtmx  constant map  constant dom
 
 map 0 loadtileset
 map 1 loadtileset
@@ -52,10 +46,10 @@ map " Tile Layer 1" layer  0 0 loadtilemap
     down? if   4 r@ y! then
     r> drop ;
 
-: *fieldbg    game one  /isotilemap ;
-: *scroller   game one  me to cam  act>  player ?exit  vx udlrvec ;
+: *fieldbg    bg one  /isotilemap ;
+: *scroller   misc one  me to cam  act>  subject ?exit  vx udlrvec ;
 
-*fieldbg  map 0 @tilesetwh drop -2 / x +!
+*fieldbg  map 0 @tilesetwh drop -2 / x  !
 *scroller
 
 \ We load each named group individually but we could easily loop through all the groups;
@@ -63,5 +57,7 @@ map " Tile Layer 1" layer  0 0 loadtilemap
 map " Plants and Buildings" objgroup loadobjects
 map " Shop Cactus" objgroup loadobjects
 
-\ 200 200 cam 's x 2!
+include nacho/test/data/objects/bean
+0 0 at *bean  \ me to subject
+
 go ok
