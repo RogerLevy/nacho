@@ -5,7 +5,7 @@
 \  Justin: use all lower case from now on.
 
 empty
-$000100 include nacho/test/rpg/rpg
+$000100 include rpg/rpg
 
 #2 to #globalscale
 
@@ -23,7 +23,7 @@ only forth definitions also xmling also tmxing
 \ ------------------------------------------------------------------------------------------------
 \ Load map
 
-" nacho/test/data/farm1.tmx" loadtmx  constant map  constant dom
+" data/farm1.tmx" loadtmx  constant map  constant dom
 
 map 0 loadtileset
 map 1 loadtileset
@@ -31,38 +31,35 @@ map 2 loadbitmaps
 map 2 loadrecipes
 map " Tile Layer 1" layer  0 0 loadtilemap
 
-
 \ ------------------------------------------------------------------------------------------------
-: left?  ( -- flag )  <left> kstate  <pad_4> kstate or  ; \ 0 0 joy x -0.25 <= or ;
-: right?  ( -- flag ) <right> kstate  <pad_6> kstate or ; \ 0 0 joy x 0.25 >= or ;
-: up?  ( -- flag )    <up> kstate  <pad_8> kstate or    ; \ 0 0 joy y -0.25 <= or ;
-: down?  ( -- flag )  <down> kstate  <pad_2> kstate or  ; \ 0 0 joy y 0.25 >= or ;
 
-: udlrvec  ( 2vec -- )
-    >r
-    0 0 r@ 2!
-    left? if  -4 r@ x! then
-    right? if  4 r@ x! then
-    up? if    -4 r@ y! then
-    down? if   4 r@ y! then
-    r> drop ;
+#2 constant ALLEGRO_TTF_MONOCHROME
+" data/fonts/Standard0765.ttf" 12 ALLEGRO_TTF_MONOCHROME font: font-menu
+" data/images/Textbox.png" image: image-textbox
+
+create dlgline 256 allot
+
+: say  0 parse dlgline place ;
+say I'm way too tired.
+
+: /dialog
+    draw>
+    image-textbox >bmp blit
+    font-menu >fnt font>  70 10 +at  at@  " Bean:" print  0 20 2+ at  dlgline count print ;
+
+
+0 0 at  ui one /dialog
 
 : *fieldbg    bg one  /isotilemap ;
-: *scroller   misc one  me to cam  act>  subject ?exit  vx udlrvec ;
-
 *fieldbg  map 0 @tilesetwh drop -2 / x  !
-*scroller
 
 \ We load each named group individually but we could easily loop through all the groups;
 \ they are stored in the expected Z order.
 map " Plants and Buildings" objgroup loadobjects
 map " Shop Cactus" objgroup loadobjects
 
-include nacho/test/data/objects/bean
+" data/objects/bean.f" findfile included
 0 0 at *bean  ' p1 is subject
 
-\ Overriding stuff...
-: physics  stage each>  vx x v+  y @ zdepth ! ;
-: (step)  step>  think  stage multi  physics ;
 
-go (step) ok
+ok

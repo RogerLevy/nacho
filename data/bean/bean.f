@@ -1,6 +1,6 @@
 [role] bean  simplewalker derive
 
-" nacho/data/bean.png" image: images/bean
+" bean/bean.png" image: images/bean
 64 64 images/bean subdivideimage
 
 bean walkdata 8 animtable[
