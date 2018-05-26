@@ -20,5 +20,6 @@
     map " Shop Cactus" objgroup loadobjects
     map 0 @tilesetwh drop -2 /  0 at  *fieldbg
     0 0 at  *bean  me to p1
-    ['] p1 is subject
+    p1 to subject
+    p1 to focus
 ;

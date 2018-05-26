@@ -60,7 +60,7 @@ map " Plants and Buildings" objgroup loadobjects
 map " Shop Cactus" objgroup loadobjects
 
 " data/objects/bean.f" findfile included
-0 0 at *bean  ' p1 is subject
+0 0 at *bean  ' p1 to subject
 
 
 ok

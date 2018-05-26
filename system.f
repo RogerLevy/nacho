@@ -1,3 +1,5 @@
+[section] top
+
 #2 to #globalscale
 960 720 resolution
 
@@ -5,9 +7,10 @@
 0 value map  \ xml node
 0 value dom  \ current map dom
 
-
+create dlgline 256 allot
 
 \ MAP STUFF ===================================================
+[section] map
 only forth definitions also xmling also tmxing
 : deiso  at@  >car  at  ;
 : ofs  wh@ 2 1 2/ 2negate +at  ;
@@ -20,23 +23,30 @@ only forth definitions also xmling also tmxing
     draw>  @gidbmp blit ;
 
 
-\ DIALOG ======================================================
+\ ==============================================================
+[section] dialog
 #2 constant ALLEGRO_TTF_MONOCHROME
 " data/fonts/Standard0765.ttf" 12 ALLEGRO_TTF_MONOCHROME font: font-menu
 " data/images/Textbox.png" image: image-textbox
 
-create dlgline 256 allot
 
-: /dialog
+: act-dialog
+    act>  ?focus
+    <z> kpressed if  me remove  pop-focus  then ;
+
+: *dialog
+    ui one  me push-focus  act-dialog
     draw>
     image-textbox >bmp blit
     font-menu >fnt font>  70 10 +at  at@  " Bean:" print  0 20 2+ at  dlgline count print ;
 
-0 0 at  ui one /dialog
 
-: say  0 parse dlgline place  ;
-say I'm way too tired.
+: say  ( adr c -- ) dlgline place  0 0 at *dialog ;
+
+
+
 
 \ Temporary:
-\ BEAN ========================================================
+\ ==============================================================
+[section] bean
 " data/objects/bean.f" findfile included
