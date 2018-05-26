@@ -1,5 +1,7 @@
 [role] bean  simplewalker derive
 
+1 0.5 walkscale 2!
+
 " bean/bean.png" image: images/bean
 64 64 images/bean subdivideimage
 
@@ -23,5 +25,6 @@ bean idledata 8 animtable[
     ( nw ) subanim[  0 [h] frame,  ]subanim
     ( n  ) subanim[  6     frame,  ]subanim
     ( ne ) subanim[  0   frame,    ]subanim
+]animtable
 
 : *bean  chrs one  bean images/bean /simplewalker ;

@@ -8,6 +8,7 @@ empty
 $000100 include rpg/rpg
 
 #2 to #globalscale
+960 720 resolution
 
 only forth definitions also xmling also tmxing
 : deiso  at@  >car  at  ;
