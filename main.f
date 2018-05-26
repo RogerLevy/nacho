@@ -1,5 +1,8 @@
-$000100 include rpg/rpg
 
-: start ;
+include nacho/system
+include nacho/maps
+: go
+    load-farm
+    ok ;
 
-start \ ok
+go

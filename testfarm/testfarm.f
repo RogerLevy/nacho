@@ -36,7 +36,7 @@ map " Tile Layer 1" layer  0 0 loadtilemap
 
 #2 constant ALLEGRO_TTF_MONOCHROME
 " data/fonts/Standard0765.ttf" 12 ALLEGRO_TTF_MONOCHROME font: font-menu
-" data/images/Textbox.png" image: image-textbox
+" data/bitmaps/Textbox.png" image: image-textbox
 
 create dlgline 256 allot
 

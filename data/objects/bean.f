@@ -1,9 +1,9 @@
-[role] bean  simplewalker derive
+[role] bean  chara derive
 
 1 0.5 walkscale 2!
 
-" bean/bean.png" image: images/bean
-64 64 images/bean subdivideimage
+" bean/bean.png" image: image-bean
+64 64 image-bean subdivide
 
 bean walkdata 8 animtable[
     ( e  ) subanim[  1   frame,  0   frame,       ]subanim
@@ -27,4 +27,4 @@ bean idledata 8 animtable[
     ( ne ) subanim[  0   frame,    ]subanim
 ]animtable
 
-: *bean  chrs one  bean images/bean /simplewalker ;
+: *bean  ppl one  bean image-bean /chara  ;
