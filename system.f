@@ -30,6 +30,17 @@ only forth definitions also xmling also tmxing
 " data/images/Textbox.png" image: image-textbox
 
 
+: string-  ( whole c end c -- start c ) \ get the "difference" of 2 strings
+    rot swap - nip ;
+
+: mlprint   ( str c -- )
+    at@ drop lmargin !
+    begin
+        2dup  " \n" search not if  print exit  else  2dup 2>r  string- print  2r> then
+        newline
+        #2 /string 0 max \ skip the \n
+    again ;
+
 : act-dialog
     act>  ?focus
     <z> kpressed if  me remove  pop-focus  then ;
@@ -38,7 +49,7 @@ only forth definitions also xmling also tmxing
     ui one  me push-focus  act-dialog
     draw>
     image-textbox >bmp blit
-    font-menu >fnt font>  70 10 +at  at@  " Bean:" print  0 20 2+ at  dlgline count print ;
+    font-menu >fnt font>  70 10 +at  at@  dlgline count mlprint ;
 
 
 : say  ( adr c -- ) dlgline place  0 0 at *dialog ;
